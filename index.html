@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9dd13a1052.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <audio src="assets/ambientNoise.mp3" id="bgAudio" loop></audio>
+    <audio src="assets/footsteps.mp3" id="lionAudio" loop></audio>
+    <div id="start">
+      <h4>PRESS START</h4>
+      <img src="assets/start.png" onclick="start()"/>
+    </div>
+    <div id="container" class="hidden">
+      <video src="assets/animation.mov" onended="swap()" webkit-playsinline playsinline></video>
+      <img src="assets/composite.gif" class="collage-piece hidden hide-on-restart"/>
+      <img src="assets/trees.png" style="z-index: 10; mix-blend-mode: hard-light;" class="collage-piece hidden hide-on-restart"/>
+      <img src="assets/lionCub.gif" id="lionCub" class="hidden hide-on-restart"/>
+      <div id="left-controls" class="controls collage-piece hidden hide-on-restart">
+        <button onclick="lion()"><i class="fas fa-paw"></i></button>
+      </div>
+      <div id="right-controls" class="controls hide-on-restart">
+        <button onclick="toggleAudio()"><i id="toggleAudio" class='fas fa-volume-up'></i></button>
+        <button onclick="restart()"><i class='fas fa-redo'></i></button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
