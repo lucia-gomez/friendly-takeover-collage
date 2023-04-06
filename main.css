@@ -132,11 +132,11 @@ h4 {
 
 .lion-animation {
   top: -3vh!important;
-  transform: translateX(-10%);
+  left: -10%;
   animation: lion-move 15s;
 }
 
 @keyframes lion-move {
-  from {transform: translateX(-10%)}
+  from {transform: translateX(0px)}
   to {transform: translateX(130%)}
 }

@@ -84,15 +84,18 @@ function lion() {
     clearTimeout(animationTimers['lion']);
   }
   const img = document.getElementById('lionCub');
-  show(img);
   if (isAudioEnabled()) {
     lionAudio.currentTime = 0;
     lionAudio.play();
   }
 
-  img.classList.remove('lion-animation');
-  void img.offsetWidth;
-  img.classList.add('lion-animation');
+  img.style.animationName = 'none';
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      img.style.animationName = '';
+    }, 0);
+  });
+  show(img);
 
   const lionTimerId = setTimeout(() => {
     lionAudio.pause();
