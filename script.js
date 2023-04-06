@@ -20,8 +20,10 @@ function show(obj) {
 }
 
 function start() {
-  startUi.className = 'hidden';
-  container.className = 'shown';
+  hide(startUi);
+  show(container);
+  if (isMobile)
+    container.style.overflowX = 'scroll';
   show(video);
   if (isAudioEnabled()) {
     bgAudio.currentTime = 0;

@@ -10,9 +10,9 @@
   <body>
     <audio src="assets/ambientNoise.mp3" id="bgAudio" loop></audio>
     <audio src="assets/footsteps.mp3" id="lionAudio" loop></audio>
-    <div id="start">
+    <div id="start" class="shown" onclick="start()">
       <h4>PRESS START</h4>
-      <img src="assets/start.png" onclick="start()"/>
+      <img src="assets/start.png" />
     </div>
     <div id="container" class="hidden">
       <video src="assets/animation.mov" onended="swap()" webkit-playsinline playsinline></video>
