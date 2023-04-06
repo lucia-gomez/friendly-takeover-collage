@@ -100,6 +100,14 @@ h4 {
   #start img {
     width: 50vw;
   }
+
+  .controls {
+    position: fixed;
+  }
+
+  button {
+    background-color: #12101094;
+  }
 }
 
 /* phone landscape */
