@@ -3,6 +3,7 @@ const container = document.getElementById("container");
 const video = document.getElementsByTagName("video")[0];
 const allAudio = document.getElementsByTagName("audio");
 const bgAudio = document.getElementById("bgAudio");
+const carAudio = document.getElementById('carAudio');
 const lionAudio = document.getElementById('lionAudio');
 const toggleAudioIcon = document.getElementById("toggleAudio");
 const animationTimers = {};
@@ -19,18 +20,24 @@ function isAudioEnabled() {
   return toggleAudioIcon.classList.contains('fa-volume-up');
 }
 
+function resumeAudio() {
+  if (!isAudioEnabled()) return;
+  bgAudio.play()
+  if (animationTimers['lion'] != null) {
+    lionAudio.play();
+  }
+  if (animationTimers['car'] != null) {
+    carAudio.play();
+  }
+}
+
 window.addEventListener('blur', () => {
   for(let audio of allAudio) {
     audio.pause();
   }
 });
 window.addEventListener('focus', () => {
-  if (isAudioEnabled()) {
-    bgAudio.play();
-  }
-  if (animationTimers['lion'] != null) {
-    lionAudio.play();
-  }
+  resumeAudio();
 });
 
 function hide(obj) {
@@ -79,30 +86,44 @@ function swap() {
   setTimeout(() => {video.className = 'hidden';}, 2000);
 }
 
-function lion() {
-  if (animationTimers['lion'] != null) {
-    clearTimeout(animationTimers['lion']);
-  }
-  const img = document.getElementById('lionCub');
-  if (isAudioEnabled()) {
-    lionAudio.currentTime = 0;
-    lionAudio.play();
+function resetAnimation(obj, audio, key, duration) {
+  // reset animation timer, if already running
+  if (animationTimers[key] != null) {
+    clearTimeout(animationTimers[key]);
   }
 
-  img.style.animationName = 'none';
+  // reset audio
+  if (isAudioEnabled()) {
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  // restart animation
+  obj.style.animationName = 'none';
   requestAnimationFrame(() => {
     setTimeout(() => {
-      img.style.animationName = '';
+      obj.style.animationName = '';
     }, 0);
   });
-  show(img);
+  show(obj);
 
-  const lionTimerId = setTimeout(() => {
-    lionAudio.pause();
-    hide(img);
-    animationTimers['lion'] = null;
-  }, 8000);
-  animationTimers['lion'] = lionTimerId;
+  // start timer to clear animation
+  const timerId = setTimeout(() => {
+    audio.pause();
+    hide(obj);
+    animationTimers[key] = null;
+  }, duration);
+  animationTimers[key] = timerId;
+}
+
+function lion() {
+  const img = document.getElementById('lionCub');
+  resetAnimation(img, lionAudio, 'lion', 8000);
+}
+
+function car() {
+  const car = document.getElementById('car');
+  resetAnimation(car, carAudio, 'car', 7000);
 }
 
 function toggleAudio() {
@@ -113,11 +134,8 @@ function toggleAudio() {
     toggleAudioIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
     localStorage.setItem(VOLUME_STORAGE_KEY, 'false');
   } else {
-    bgAudio.play();
-    if (animationTimers['lion'] != null) {
-      lionAudio.play();
-    }
     toggleAudioIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+    resumeAudio();
     localStorage.setItem(VOLUME_STORAGE_KEY, 'true');
   }
 }

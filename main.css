@@ -130,13 +130,18 @@ h4 {
   visibility: hidden;
 }
 
-.lion-animation {
+#lionCub {
   top: -3vh!important;
   left: -10%;
-  animation: lion-move 15s;
+  animation: left-to-right 15s;
 }
 
-@keyframes lion-move {
+#car {
+  left: -10%;
+  animation: left-to-right 10s;
+}
+
+@keyframes left-to-right {
   from {transform: translateX(0px)}
   to {transform: translateX(130%)}
 }
