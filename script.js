@@ -7,6 +7,14 @@ const lionAudio = document.getElementById('lionAudio');
 const toggleAudioIcon = document.getElementById("toggleAudio");
 const animationTimers = {};
 
+const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+const isMobile = width <= 768;
+
+const VOLUME_STORAGE_KEY = 'friendly_takeover_volume_enabled';
+if (localStorage.getItem(VOLUME_STORAGE_KEY) === 'false') {
+  toggleAudio();
+}
+
 function isAudioEnabled() {
   return toggleAudioIcon.classList.contains('fa-volume-up');
 }
@@ -86,11 +94,13 @@ function toggleAudio() {
       audio.pause();
     }
     toggleAudioIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+    localStorage.setItem(VOLUME_STORAGE_KEY, 'false');
   } else {
     bgAudio.play();
     if (animationTimers['lion'] != null) {
       lionAudio.play();
     }
     toggleAudioIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+    localStorage.setItem(VOLUME_STORAGE_KEY, 'true');
   }
 }
