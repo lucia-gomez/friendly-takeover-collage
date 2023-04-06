@@ -145,3 +145,19 @@ h4 {
   from {transform: translateX(0px)}
   to {transform: translateX(130%)}
 }
+
+#birds {
+  mix-blend-mode: color-burn;
+  width: auto;
+  height: 100%!important;
+  top: -45%!important;
+  opacity: 0;
+  animation: 15s fade-out;
+}
+
+@keyframes fade-out {
+  0% {opacity: 0}
+  10% {opacity: 1}
+  90% {opacity: 1}
+  100% {opacity: 0}
+}

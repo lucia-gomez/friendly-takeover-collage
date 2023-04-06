@@ -3,6 +3,7 @@ const container = document.getElementById("container");
 const video = document.getElementsByTagName("video")[0];
 const allAudio = document.getElementsByTagName("audio");
 const bgAudio = document.getElementById("bgAudio");
+const birdsAudio = document.getElementById('birdsAudio');
 const carAudio = document.getElementById('carAudio');
 const lionAudio = document.getElementById('lionAudio');
 const toggleAudioIcon = document.getElementById("toggleAudio");
@@ -28,6 +29,9 @@ function resumeAudio() {
   }
   if (animationTimers['car'] != null) {
     carAudio.play();
+  }
+  if (animationTimers['birds'] != null) {
+    birdsAudio.play();
   }
 }
 
@@ -124,6 +128,11 @@ function lion() {
 function car() {
   const car = document.getElementById('car');
   resetAnimation(car, carAudio, 'car', 7000);
+}
+
+function birds() {
+  const birds = document.getElementById('birds');
+  resetAnimation(birds, birdsAudio, 'birds', 15000);
 }
 
 function toggleAudio() {

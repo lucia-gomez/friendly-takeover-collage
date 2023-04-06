@@ -16,6 +16,7 @@
     <audio src="assets/ambientNoise.mp3" id="bgAudio" loop></audio>
     <audio src="assets/footsteps.mp3" id="lionAudio" loop></audio>
     <audio src="assets/car.mp3" id="carAudio" loop></audio>
+    <audio src="assets/birds.mp3" id="birdsAudio" loop></audio>
     <div id="start" class="shown" onclick="start()">
       <h4>PRESS START</h4>
       <img src="assets/start.png" />
@@ -26,9 +27,11 @@
       <img src="assets/trees.png" style="z-index: 10; mix-blend-mode: hard-light;" class="collage-piece hidden hide-on-restart"/>
       <img src="assets/car.png" id="car" class="hidden hide-on-restart"/>
       <img src="assets/lionCub.gif" id="lionCub" class="hidden hide-on-restart"/>
+      <img src="assets/birds.gif" id="birds" class="hidden hide-on-restart"/>
       <div id="left-controls" class="controls collage-piece hidden hide-on-restart">
         <button onclick="lion()"><i class="fas fa-paw"></i></button>
         <button onclick="car()"><i class="fas fa-car-side"></i></button>
+        <button onclick="birds()"><i class="fas fa-crow"></i></button>
       </div>
       <div id="right-controls" class="controls hide-on-restart">
         <button onclick="toggleAudio()"><i id="toggleAudio" class='fas fa-volume-up'></i></button>
