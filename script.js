@@ -19,6 +19,20 @@ function isAudioEnabled() {
   return toggleAudioIcon.classList.contains('fa-volume-up');
 }
 
+window.addEventListener('blur', () => {
+  for(let audio of allAudio) {
+    audio.pause();
+  }
+});
+window.addEventListener('focus', () => {
+  if (isAudioEnabled()) {
+    bgAudio.play();
+  }
+  if (animationTimers['lion'] != null) {
+    lionAudio.play();
+  }
+});
+
 function hide(obj) {
   obj.classList.replace('shown', 'hidden');
 }
