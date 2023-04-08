@@ -7,6 +7,8 @@ const birdsAudio = document.getElementById('birdsAudio');
 const carAudio = document.getElementById('carAudio');
 const lionAudio = document.getElementById('lionAudio');
 const toggleAudioIcon = document.getElementById("toggleAudio");
+const collagePieces = document.getElementsByClassName("collage-piece");
+
 const animationTimers = {};
 
 const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -53,10 +55,13 @@ function show(obj) {
 }
 
 function start() {
+  if (isMobile) {
+    video.width = collagePieces[0].width;
+    container.style.overflowX = 'scroll';
+    document.getElementById('animation-clip').style.width = collagePieces[0].width;
+  }
   hide(startUi);
   show(container);
-  if (isMobile)
-    container.style.overflowX = 'scroll';
   show(video);
   if (isAudioEnabled()) {
     bgAudio.currentTime = 0;
@@ -83,7 +88,6 @@ function restart() {
 }
 
 function swap() {
-  const collagePieces = document.getElementsByClassName("collage-piece");
   for (let piece of collagePieces) {
     show(piece)
   }
@@ -117,6 +121,7 @@ function resetAnimation(obj, audio, key, duration) {
     hide(obj);
     animationTimers[key] = null;
   }, duration);
+  obj.classList.add(key + '-animation');
   animationTimers[key] = timerId;
 }
 

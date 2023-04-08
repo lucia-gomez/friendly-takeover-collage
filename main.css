@@ -130,20 +130,37 @@ h4 {
   visibility: hidden;
 }
 
+#animation-clip {
+  overflow: hidden;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.lion-animation {
+  animation: left-to-right 15s;
+}
+
 #lionCub {
   top: -3vh!important;
   left: -10%;
-  animation: left-to-right 15s;
+}
+
+.car-animation {
+  animation: left-to-right 10s;
 }
 
 #car {
   left: -10%;
-  animation: left-to-right 10s;
 }
 
 @keyframes left-to-right {
   from {transform: translateX(0px)}
   to {transform: translateX(130%)}
+}
+
+.birds-animation {
+  animation: 15s fade-out;
 }
 
 #birds {
@@ -152,7 +169,6 @@ h4 {
   height: 100%!important;
   top: -45%!important;
   opacity: 0;
-  animation: 15s fade-out;
 }
 
 @keyframes fade-out {
