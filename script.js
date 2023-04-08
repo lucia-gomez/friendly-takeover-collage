@@ -13,6 +13,7 @@ const animationTimers = {};
 
 const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 const isMobile = width <= 768;
+let hasStarted = false;
 
 const VOLUME_STORAGE_KEY = 'friendly_takeover_volume_enabled';
 if (localStorage.getItem(VOLUME_STORAGE_KEY) === 'false') {
@@ -43,7 +44,8 @@ window.addEventListener('blur', () => {
   }
 });
 window.addEventListener('focus', () => {
-  resumeAudio();
+  if (hasStarted)
+    resumeAudio();
 });
 
 function hide(obj) {
@@ -55,6 +57,7 @@ function show(obj) {
 }
 
 function start() {
+  hasStarted = true;
   if (isMobile) {
     video.width = collagePieces[0].width;
     container.style.overflowX = 'scroll';
@@ -62,7 +65,6 @@ function start() {
   }
   hide(startUi);
   show(container);
-  show(video);
   if (isAudioEnabled()) {
     bgAudio.currentTime = 0;
     bgAudio.play();
