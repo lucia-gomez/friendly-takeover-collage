@@ -61,10 +61,11 @@ function start() {
   if (isMobile) {
     video.width = collagePieces[0].width;
     container.style.overflowX = 'scroll';
-    document.getElementById('animation-clip').style.width = collagePieces[0].width;
   }
+  document.getElementById('animation-clip').style.width = collagePieces[0].width;
   hide(startUi);
   show(container);
+  show(video);
   if (isAudioEnabled()) {
     bgAudio.currentTime = 0;
     bgAudio.play();
